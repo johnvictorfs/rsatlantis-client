@@ -29,15 +29,10 @@
               {{ item.icon }}
             </v-icon>
           </v-btn>
-          <!-- <v-btn icon :ref="clanUrl"> -->
-          <!-- <a :href="clanUrl" target="_blank" style="text-decoration: none;">
-              <RunescapeIcon />
-            </a> -->
-          <!-- </v-btn> -->
         </v-row>
       </v-card-title>
       <v-card-actions class="blue darken-1 justify-center">
-        <strong>&copy; {{ new Date().getFullYear() }} — Atlantis</strong>
+        <strong>&copy; {{ currentYear }} — Atlantis</strong>
         <v-btn icon>
           <a href="https://github.com/johnvictorfs/rsatlantis" target="_blank" style="text-decoration: none;">
             <v-icon color="white">fab fa-github</v-icon>
@@ -54,14 +49,14 @@
   </v-footer>
 </template>
 
-<script>
+<script lang="ts">
 import api from '@/api'
-// const RunescapeIcon = () => import('@/icons/Runescape.vue')
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   name: 'Footer',
-  // components: { RunescapeIcon },
   data: () => ({
+    currentYear: new Date().getFullYear(),
     apiDocsUrl: api.docs.redoc(),
     clanUrl: 'http://services.runescape.com/m=clan-home/clan/Atlantis',
     items: [
@@ -97,7 +92,7 @@ export default {
       }
     ]
   })
-}
+})
 </script>
 
 <style lang="scss" scoped>
