@@ -1,0 +1,33 @@
+{
+  "folders": [
+    {
+      "name": "Project Root",
+      "path": "."
+    }
+  ],
+  "settings": {
+    // Fix some node typing warnings with the typescript extension
+    "typescript.tsdk": "${workspaceRoot}/node_modules/typescript/lib",
+
+    // Enable linting on .vue files with the Vetur extension
+    "vetur.format.defaultFormatter.ts": "vscode-typescript",
+    "vetur.format.defaultFormatter.html": "prettyhtml",
+    "vetur.format.defaultFormatterOptions": {
+      "js-beautify-html": {
+        "wrap_attributes": "auto"
+      }
+    },
+
+    // Enable imports with alias '@' to '/src/' with the path-intellisense extension
+    "path-intellisense.mappings": {
+      "@": "${workspaceRoot}/src"
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "octref.vetur",
+      "christian-kohler.path-intellisense"
+    ]
+  }
+}
