@@ -1,5 +1,8 @@
 # RsAtlantis
 
+## Frontend Repository
+
+- [Backend Repository](https://github.com/johnvictorfs/rsatlantis)
 - [Website](https://rsatlantis-9cd8a.web.app)
 - [API Docs](https://rsatlantis.tk/api/docs/redoc)
 
