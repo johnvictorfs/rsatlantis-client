@@ -21,38 +21,44 @@
       </v-btn>
     </v-toolbar>
 
-    <v-timeline dense>
-      <v-timeline-item :color="getColor(evento)" v-for="evento in formattedEvents" :key="evento.id" :icon="getIcon(evento)">
-        <v-card dark class="mr-4">
-          <v-toolbar dark :color="getColor(evento)">
-            <v-toolbar-title>
-              {{ evento.title }}
-            </v-toolbar-title>
+    <v-card-text>
+      <v-timeline dense v-if="formattedEvents.length">
+        <v-timeline-item :color="getColor(evento)" v-for="evento in formattedEvents" :key="evento.id" :icon="getIcon(evento)">
+          <v-card dark class="mr-4">
+            <v-toolbar dark :color="getColor(evento)">
+              <v-toolbar-title>
+                {{ evento.title }}
+              </v-toolbar-title>
 
-            <v-card-subtitle>
-              {{ formattedDate(evento.date) }}
-            </v-card-subtitle>
+              <v-card-subtitle>
+                {{ formattedDate(evento.date) }}
+              </v-card-subtitle>
 
-            <v-spacer />
+              <v-spacer />
 
-            <v-btn icon disabled v-if="isAdmin">
-              <v-icon>fas fa-edit</v-icon>
-            </v-btn>
-          </v-toolbar>
+              <v-btn icon disabled v-if="isAdmin">
+                <v-icon>fas fa-edit</v-icon>
+              </v-btn>
+            </v-toolbar>
 
-          <v-img v-if="evento.image" height="120" :src="evento.image" />
+            <v-img v-if="evento.image" height="120" :src="evento.image" />
 
-          <v-chip v-if="evento.beneficiente" color="success" class="ma-3" small>
-            <v-icon small left>
-              fas fa-hand-holding-usd
-            </v-icon>
-            Beneficiente
-          </v-chip>
+            <v-chip v-if="evento.beneficiente" color="success" class="ma-3" small>
+              <v-icon small left>
+                fas fa-hand-holding-usd
+              </v-icon>
+              Beneficiente
+            </v-chip>
 
-          <v-card-text v-if="evento.description" v-html="urlify(evento.description)" />
-        </v-card>
-      </v-timeline-item>
-    </v-timeline>
+            <v-card-text v-if="evento.description" v-html="urlify(evento.description)" />
+          </v-card>
+        </v-timeline-item>
+      </v-timeline>
+
+      <v-alert type="error" v-else>
+        Nenhum evento marcado :(
+      </v-alert>
+    </v-card-text>
   </v-card>
 </template>
 
@@ -68,12 +74,12 @@ import mockEventos from '@/mocks/events.json'
 
 @Component({})
 export default class Events extends Vue {
-  eventos: ClanEvent[] = mockEventos
+  eventos: ClanEvent[] = mockEventos as ClanEvent[]
 
   get formattedEvents() {
     const now = new Date()
 
-    // @ts-ignore  
+    // @ts-ignore
     return this.eventos.sort((a, b) => new Date(a.date) - new Date(b.date)).filter(evento => {
       const eventoDate = new Date(evento.date)
 
@@ -81,7 +87,7 @@ export default class Events extends Vue {
     })
   }
 
-  get isAdmin() {
+  get isAdmin(): boolean {
     return this.$store.getters.isAdmin
   }
 
@@ -91,7 +97,7 @@ export default class Events extends Vue {
     return text.replace(urlRegex, url => '<a href="' + url + '">' + url + '</a>')
   }
 
-  formattedDate(dateStr: string) {
+  formattedDate(dateStr: string): string {
     const date = new Date(dateStr)
 
     const distance = formatDistance(date, new Date(), { addSuffix: true, locale: ptBR })
@@ -100,15 +106,15 @@ export default class Events extends Vue {
     return `${dateFormatted}, ${distance}`
   }
 
-  getIcon(evento: ClanEvent) {
+  getIcon(evento: ClanEvent): string {
     switch (evento.type) {
       case 'in-game':
         return '$runescape'
       case 'off-game':
         return 'fas fa-table-tennis'
+      default:
+        return '$runescape'
     }
-
-    return '$runescape'
   }
 
   getColor(evento: ClanEvent): string {
@@ -117,9 +123,9 @@ export default class Events extends Vue {
         return 'primary darken-3'
       case 'off-game':
         return 'teal darken-3'
+      default:
+        return 'primary darken-3'
     }
-
-    return 'primary darken-3'
   }
 }
 </script>
