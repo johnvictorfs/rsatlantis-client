@@ -32,6 +32,43 @@
     </v-toolbar>
 
     <v-card-text>
+      <!-- Membros Autenticados do Discord -->
+      <StatusCard
+        :admin-actions="isAdmin"
+        color="primary"
+        icon="fas fa-user"
+        v-if="users && users.length > 0 && !errors.users"
+      >
+        <template #content>
+          Membros Autenticados: {{ activeUsers.length }} ativos
+        </template>
+
+        <template #admin-actions>
+          <v-tooltip bottom>
+            <template #activator="{ on }">
+              <v-btn icon v-on="on" disabled>
+                <v-icon>fas fa-list</v-icon>
+              </v-btn>
+            </template>
+            <span>Ver Usuários</span>
+          </v-tooltip>
+        </template>
+      </StatusCard>
+
+      <!-- Erro Membros Autenticados -->
+      <StatusCard color="error" icon="fas fa-user" v-else-if="errors.users">
+        <template #content>
+          Erro ao atualizar informações de Membros Autenticados
+        </template>
+      </StatusCard>
+
+      <!-- Nenhum Membro Autenticado -->
+      <StatusCard color="error" icon="fas fa-user" v-else-if="users && users.length === 0 && !errors.users">
+        <template #content>
+          Nenhum Membro Autenticado
+        </template>
+      </StatusCard>
+
       <!-- Notificações de Raids -->
       <StatusCard
         :admin-actions="isAdmin"
@@ -79,7 +116,7 @@
       <!-- Notificações Raids Desabilitadas -->
       <StatusCard color="error" icon="mdi-sword-cross" :admin-actions="isAdmin" v-else-if="raidsStatus && !raidsStatus.notifications && !errors.raidsStatus">
         <template #content>
-          Times de Raids desabilitados
+          Times de Raids inativos
         </template>
 
         <template #admin-actions>
@@ -109,43 +146,6 @@
       <StatusCard color="error" icon="mdi-sword-cross" v-else-if="errors.raidsStatus">
         <template #content>
           Erro ao atualizar informações de Notificações de Raids
-        </template>
-      </StatusCard>
-
-      <!-- Membros Autenticados do Discord -->
-      <StatusCard
-        :admin-actions="isAdmin"
-        color="primary"
-        icon="fas fa-user"
-        v-if="users && users.length > 0 && !errors.users"
-      >
-        <template #content>
-          Membros Autenticados: {{ users.length }} ({{ activeUsers.length }} ativos)
-        </template>
-
-        <template #admin-actions>
-          <v-tooltip bottom>
-            <template #activator="{ on }">
-              <v-btn icon v-on="on" disabled>
-                <v-icon>fas fa-list</v-icon>
-              </v-btn>
-            </template>
-            <span>Ver Usuários</span>
-          </v-tooltip>
-        </template>
-      </StatusCard>
-
-      <!-- Erro Membros Autenticados -->
-      <StatusCard color="error" icon="fas fa-user" v-else-if="errors.users">
-        <template #content>
-          Erro ao atualizar informações de Membros Autenticados
-        </template>
-      </StatusCard>
-
-      <!-- Nenhum Membro Autenticado -->
-      <StatusCard color="error" icon="fas fa-user" v-else-if="users && users.length === 0 && !errors.users">
-        <template #content>
-          Nenhum Membro Autenticado
         </template>
       </StatusCard>
 
@@ -270,7 +270,7 @@
       <!-- Amigo Secreto Inativo -->
       <StatusCard :admin-actions="isAdmin" color="error" icon="fas fa-gifts" v-else-if="secretSanta && !secretSanta.activated && !errors.secretSanta">
         <template #content>
-          Amigo Secreto Inativo
+          Amigo Secreto inativo
         </template>
 
         <template #admin-actions>
