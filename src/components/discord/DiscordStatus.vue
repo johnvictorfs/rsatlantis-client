@@ -318,10 +318,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-// import moment from 'moment'
-// import 'moment/locale/pt-br'
 
-import { Discord } from '@/types'
+import {format} from 'date-fns'
+import {ptBR} from 'date-fns/locale'
+
+import {Discord} from '@/types'
 import api from '@/api'
 
 const StatusCard = () => import('@/components/StatusCard.vue')
@@ -359,7 +360,7 @@ export default class DiscordStatus extends Vue {
     }
 
     async mounted() {
-      this.getData()
+      await this.getData()
     }
 
     async getRaidsStatus() {
@@ -409,7 +410,7 @@ export default class DiscordStatus extends Vue {
     async toggleRaidsStatus() {
       try {
         await api.discord.raids.toggle()
-        this.getRaidsStatus()
+        this.getRaidsStatus().then()
         this.$toasted.global.success('Status de Notificações de Raids atualizado com sucesso!')
       } catch (error) {
         this.$toasted.global.error('Erro ao atualizar Status de Notificações de Raids')
@@ -422,7 +423,7 @@ export default class DiscordStatus extends Vue {
     async toggleSecretSantaStatus() {
       try {
         await api.discord.secretSanta.toggle()
-        this.getSecretSantaStatus()
+        this.getSecretSantaStatus().then()
         this.$toasted.global.success('Status do Amigo Secreto atualizado com sucesso!')
       } catch (error) {
         this.$toasted.global.error('Erro ao atualizar Status do Amigo Secreto')
@@ -432,19 +433,14 @@ export default class DiscordStatus extends Vue {
       }
     }
 
-    formatDate(date: string | null): string | null {
-      /**
-       * Format date as /d/m/y
-       */
-      if (!date) return null
+    formatDate(date: string | null): string {
+      if (!date) return 'N/A'
 
-      const formattedDate = new Date(date)
-
-      return 'N/A'
-
-      // const timeLeft = moment(formattedDate, '', 'pt').fromNow()
-
-      // return moment(formattedDate, '', 'pt').format('D [de] MMMM [às] HH:mm') + ', ' + timeLeft
+      return format(
+        new Date(date),
+        'd \'de\' MMMM (HH:mm)',
+        { locale: ptBR }
+      )
     }
 
     get isAdmin() {
