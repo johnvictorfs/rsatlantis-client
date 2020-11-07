@@ -94,8 +94,8 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 import api from '@/api'
-import { formatError } from '@/helpers/errors'
 import { UserCredentials } from '@/store/types'
+import { RawLocation } from 'vue-router'
 
 @Component({})
 export default class Login extends Vue {
@@ -119,21 +119,18 @@ export default class Login extends Vue {
     if ((this.$refs.form as any).validate()) {
       await this.$store.dispatch('login', this.credentials)
 
-      this.$router.push({ name: 'home' })
+      await this.$router.push({ name: 'home' })
 
       if (this.$route.query.next) {
-        // @ts-ignore
         // TODO: Mover isso para o store ou router.ts?
         // https://github.com/vuejs/vue-router/issues/1932
-        this.$router.push(this.$route.query.next)
+        await this.$router.push(this.$route.query.next as RawLocation)
       }
     }
   }
 
   async loginWithDiscord() {
     const data = await api.discord.discordOauth()
-    console.log(data.authorization_url)
-    console.log(data)
     window.location.href = data.authorization_url
   }
 }

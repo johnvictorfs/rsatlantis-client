@@ -76,8 +76,7 @@ export class Api {
      */
     this.axios.interceptors.request.use((response: any) => {
       if (!response.url.includes('static')) {
-        // Add '/' to end of API url to avoid issues with running into the catch-all
-        // url that goes to the frontend Vue app instead of the API
+        // Add '/' to end of API url
         if (response.url[response.url.length - 1] !== '/') {
           response.url += '/'
         }
