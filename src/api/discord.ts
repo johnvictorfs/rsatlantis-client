@@ -5,6 +5,7 @@ import { Discord, DiscordApi } from '@/types'
 export default class DiscordService extends Service {
   public raids: RaidsService
   public secretSanta: SecretSantaService
+  private readonly baseURL: string = process.env.VUE_APP_API_URL + '/atlantisbot/api/'
 
   constructor(api: Api) {
     super(api)
@@ -14,13 +15,13 @@ export default class DiscordService extends Service {
   }
 
   public async doacoes(): Promise<any> {
-    const { data } = await this.api.axios.post('doacoes')
+    const { data } = await this.api.axios.post(this.baseURL + 'doacoes')
 
     return data
   }
 
   public async doacoesGoal(): Promise<any> {
-    const { data } = await this.api.axios.post('doacoes_goals')
+    const { data } = await this.api.axios.post(this.baseURL + 'doacoes_goals')
 
     if (data) {
       const activeDoacoesGoals = data.filter((goal: any) => goal.active)
@@ -32,14 +33,14 @@ export default class DiscordService extends Service {
   }
 
   public async discordOauth(): Promise<any> {
-    const { data } = await this.api.axios.post('discord_oauth/authorize')
+    const { data } = await this.api.axios.post(this.baseURL + 'oauth/authorize')
 
     return data
   }
 
   public async discordOauthUser(code: string | null): Promise<any> {
     if (code) {
-      const { data } = await this.api.axios.post('discord_oauth/user', { code })
+      const { data } = await this.api.axios.post(this.baseURL + 'oauth/user', { code })
 
       return data
     } else {
@@ -51,7 +52,7 @@ export default class DiscordService extends Service {
     /**
      * Get all Discord authenticated Users
      */
-    const { data }: { data: DiscordApi['DiscordUser'][] } = await this.api.axios.get('discord/users')
+    const { data }: { data: DiscordApi['DiscordUser'][] } = await this.api.axios.get(this.baseURL + 'users')
 
     return data.map(user => ({
       id: user.id,
@@ -68,7 +69,7 @@ export default class DiscordService extends Service {
     /**
      * Get specific Discord Authenticated User by ID
      */
-    const { data: user }: { data: DiscordApi['DiscordUser'] } = await this.api.axios.get(`discord/users/${id}`)
+    const { data: user }: { data: DiscordApi['DiscordUser'] } = await this.api.axios.get(this.baseURL + `users/${id}`)
 
     if (!user) return null
 
@@ -85,17 +86,19 @@ export default class DiscordService extends Service {
 
   public async widget(): Promise<DiscordApi['Widget']> {
     const url = 'https://discordapp.com/api/guilds/321012107942428673/widget.json'
-    const { data }: { data: DiscordApi['Widget'] } = await this.api.axios.get(url)
+    const { data }: { data: DiscordApi['Widget'] } = await this.api.axios.get(this.baseURL + url)
     return data
   }
 }
 
 class RaidsService extends Service {
+  private readonly baseURL: string = process.env.VUE_APP_API_URL + '/atlantisbot/api/'
+
   public async status(): Promise<Discord['RaidsStatus']> {
     /**
      * Get the current Status of Raids Notifications on Discord
      */
-    const { data }: { data: DiscordApi['RaidsStatus'] } = await this.api.axios.get('discord/raids/status')
+    const { data }: { data: DiscordApi['RaidsStatus'] } = await this.api.axios.get(this.baseURL + 'raids/status')
     return { notifications: data.notifications, timeToNextMessage: data.time_to_next_message }
   }
 
@@ -103,16 +106,18 @@ class RaidsService extends Service {
     /**
      * Toggle status of Discord's Raids notifications
      */
-    await this.api.axios.post('discord/raids/toggle')
+    await this.api.axios.post(this.baseURL + 'raids/toggle')
   }
 }
 
 class SecretSantaService extends Service {
+  private readonly baseURL: string = process.env.VUE_APP_API_URL + '/atlantisbot/api/'
+
   public async status(): Promise<Discord['SecretSantaStatus']> {
     /**
      * Get current status of Discord's Secret Santa
      */
-    const { data }: { data: DiscordApi['SecretSantaStatus'] } = await this.api.axios.get('discord/amigosecreto_status')
+    const { data }: { data: DiscordApi['SecretSantaStatus'] } = await this.api.axios.get(this.baseURL + 'amigosecreto_status')
     return {
       startDate: data.start_date,
       endDate: data.end_date,
@@ -128,7 +133,7 @@ class SecretSantaService extends Service {
     /**
      * Get currently registered Secret Santa Users
      */
-    const { data }: { data: DiscordApi['SecretSantaUser'][] } = await this.api.axios.get('discord/amigosecreto')
+    const { data }: { data: DiscordApi['SecretSantaUser'][] } = await this.api.axios.get(this.baseURL + 'amigosecreto')
     return data
   }
 
@@ -136,7 +141,7 @@ class SecretSantaService extends Service {
     /**
      * Toggle status of Discord's Secret Santa
      */
-    await this.api.axios.post('discord/amigosecreto_status/toggle')
+    await this.api.axios.post(this.baseURL + 'amigosecreto_status/toggle')
   }
 
   public async updateDates(startDate: string, endDate: string, premioMinimo: string): Promise<Discord['SecretSantaStatus']> {
@@ -145,7 +150,7 @@ class SecretSantaService extends Service {
      */
 
     const { data }: { data: DiscordApi['SecretSantaStatus'] } = await this.api.axios.post(
-      'discord/amigosecreto_status/update_dates',
+      this.baseURL + 'amigosecreto_status/update_dates',
       {
         start_date: startDate,
         end_date: endDate,

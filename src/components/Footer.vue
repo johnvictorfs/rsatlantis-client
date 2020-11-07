@@ -53,9 +53,23 @@
 import api from '@/api'
 import Vue from 'vue'
 
+interface FooterItem {
+  icon: string
+  path: string
+  color: string
+  colorUse: string
+}
+
+interface Data {
+  items: FooterItem[]
+  currentYear: number
+  apiDocsUrl: string
+  clanUrl: string
+}
+
 export default Vue.extend({
   name: 'Footer',
-  data: () => ({
+  data: (): Data => ({
     currentYear: new Date().getFullYear(),
     apiDocsUrl: api.docs.redoc(),
     clanUrl: 'http://services.runescape.com/m=clan-home/clan/Atlantis',
