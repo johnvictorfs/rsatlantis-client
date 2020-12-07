@@ -192,6 +192,8 @@ export default class AmigoSecretoUsers extends Vue {
 $rs-icon-size: 19px;
 
 .rs-icon {
+  height: 20px !important;
+
   svg {
     &:hover {
       .background {
