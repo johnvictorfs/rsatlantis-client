@@ -3,7 +3,7 @@
     <v-toolbar dark color="#363636">
       <v-toolbar-title class="toolbar-title">
         <v-icon left size="32" color="#668fcb">
-          fab fa-calendar
+          mdi-calendar
         </v-icon>
         Eventos
       </v-toolbar-title>

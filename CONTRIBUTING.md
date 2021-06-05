@@ -20,7 +20,7 @@
   ```ini
   # If your local Django server is running on a different port
   # for some reason, change it here accordingly
-  VUE_APP_API_URL="http://localhost:8000"
+  VITE_API_URL="http://localhost:8000"
   ```
 
 - Run local development server
