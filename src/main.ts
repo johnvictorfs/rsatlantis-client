@@ -5,6 +5,8 @@ import '@/plugins/toasted'
 
 import '@fortawesome/fontawesome-free/css/all.css'
 
+import '@/scss/main.scss'
+
 import vuetify from '@/plugins/vuetify'
 import App from '@/App.vue'
 import router from '@/router'

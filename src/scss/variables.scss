@@ -1,10 +1,21 @@
-$card-border-radius: 12px;
-$card-shaped-border-radius: 22px;
-
-$alert-border-radius: 8px;
-$sheet-border-radius: 12px;
-
-@import '~vuetify/src/styles/styles.sass';
 @import '~vuetify/src/components/VCard/_variables.scss';
 @import '~vuetify/src/components/VSheet/_variables.scss';
 @import '~vuetify/src/components/VAlert/variables.scss';
+@import '~vuetify/src/styles/styles.sass';
+
+$card-border-radius: 6px;
+$card-shaped-border-radius: 22px;
+
+$alert-border-radius: 8px;
+$sheet-border-radius: 6px;
+
+// theme to override, same applies for $material-light
+$material-dark: map-merge(
+  $material-dark,
+  (
+    'background': "#192330",
+    'text': (
+      'primary': map-get($grey, 'lighten-2')
+    )
+  )
+);
