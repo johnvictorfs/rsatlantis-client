@@ -16,12 +16,12 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import(/* webpackChunkName: "homepage" */ './views/Homepage.vue')
+      component: () => import('./views/Homepage.vue')
     },
     {
       path: '/entrar',
       name: 'login',
-      component: () => import(/* webpackChunkName: "auth-login" */ './views/auth/Login.vue')
+      component: () => import('./views/auth/Login.vue')
     },
     {
       path: '/sair',
@@ -31,45 +31,45 @@ const router = new Router({
     {
       path: '/registrar',
       name: 'register',
-      component: () => import(/* webpackChunkName: "auth-register" */ './views/auth/Register.vue')
+      component: () => import('./views/auth/Register.vue')
     },
     {
       path: '/rankings',
       name: 'hiscores',
-      component: () => import(/* webpackChunkName: "hiscores" */ './views/Hiscores.vue')
+      component: () => import('./views/Hiscores.vue')
     },
     {
       path: '/guias',
       name: 'guides.list',
-      component: () => import(/* webpackChunkName: "guides-guidelist" */ './views/guides/GuideList.vue')
+      component: () => import('./views/guides/GuideList.vue')
     },
     {
       path: '/guias/novo',
       name: 'guides.new',
       meta: { auth: true },
-      component: () => import(/* webpackChunkName: "guides-newguide" */ './views/guides/NewGuide.vue')
+      component: () => import('./views/guides/NewGuide.vue')
     },
     {
       path: '/guias/atl/:slug',
       name: 'guides.detail',
       props: true,
-      component: () => import(/* webpackChunkName: "guides-guidedetail" */ './views/guides/GuideView.vue')
+      component: () => import('./views/guides/GuideView.vue')
     },
     {
       path: '/clan/list',
       name: 'clan-list',
-      component: () => import(/* webpackChunkName: "clanlist" */ './views/ClanList.vue')
+      component: () => import('./views/ClanList.vue')
     },
     {
       path: '/amigo_secreto/inscritos',
       name: 'amigo-secreto-users',
-      component: () => import(/* webpackChunkName: "amigo-secreto-users" */ './components/discord/AmigoSecretoUsers.vue')
+      component: () => import('./components/discord/AmigoSecretoUsers.vue')
     },
     {
       path: '/404',
       alias: '*',
       name: 'notfound',
-      component: () => import(/* webpackChunkName: "notfound" */ './views/NotFound.vue')
+      component: () => import('./views/NotFound.vue')
     },
     {
       path: '*',

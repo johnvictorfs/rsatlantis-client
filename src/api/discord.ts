@@ -5,7 +5,7 @@ import { Discord, DiscordApi } from '@/types'
 export default class DiscordService extends Service {
   public raids: RaidsService
   public secretSanta: SecretSantaService
-  private readonly baseURL: string = process.env.VUE_APP_API_URL + '/atlantisbot/api/'
+  private readonly baseURL: string = import.meta.env.VITE_API_URL + '/atlantisbot/api/'
 
   constructor(api: Api) {
     super(api)
@@ -92,7 +92,7 @@ export default class DiscordService extends Service {
 }
 
 class RaidsService extends Service {
-  private readonly baseURL: string = process.env.VUE_APP_API_URL + '/atlantisbot/api/'
+  private readonly baseURL: string = import.meta.env.VITE_API_URL + '/atlantisbot/api/'
 
   public async status(): Promise<Discord['RaidsStatus']> {
     /**
@@ -111,7 +111,7 @@ class RaidsService extends Service {
 }
 
 class SecretSantaService extends Service {
-  private readonly baseURL: string = process.env.VUE_APP_API_URL + '/atlantisbot/api/'
+  private readonly baseURL: string = import.meta.env.VITE_API_URL + '/atlantisbot/api/'
 
   public async status(): Promise<Discord['SecretSantaStatus']> {
     /**

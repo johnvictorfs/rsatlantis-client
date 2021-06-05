@@ -12,7 +12,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["webpack-env", "node", "vuetify"],
+    "types": ["webpack-env", "node", "vuetify", "vite/client"],
     "typeRoots": ["node_modules/@types"],
     "paths": {
       "*": ["types/*"],
