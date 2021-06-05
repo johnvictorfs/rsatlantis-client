@@ -196,7 +196,7 @@ export default class Register extends Vue {
   async register() {
     if ((this.$refs.form as any).validate() && (this.$refs.form2 as any).validate()) {
       try {
-        const inClan = isInClan(this.credentials.ingame_name)
+        const inClan = await isInClan(this.credentials.ingame_name)
 
         if (inClan) {
           try {

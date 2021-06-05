@@ -48,7 +48,7 @@ const actions: ActionTree<AuthState, RootState> = {
         commit('SET_LOADING')
         await api.users.login(credentials)
         dispatch('accountDetails')
-        resolve()
+        resolve(credentials)
       } catch (error) {
         reject(error)
       } finally {

@@ -10,7 +10,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build --mode prod",
+    "build": "vite build --mode prod",
     "build:preprod": "vite build --mode preprod",
     "lint": "eslint './src/**/*.{ts,js,vue}'",
     "lint:fix": "yarn lint --fix",
@@ -66,7 +66,6 @@
     "vue-cli-plugin-webpack-bundle-analyzer": "~2.0.0",
     "vue-demi": "^0.9.1",
     "vue-template-compiler": "^2.6.10",
-    "vue-tsc": "^0.1.7",
     "vuetify-loader": "^1.2.2",
     "webpack-bundle-analyzer": "^3.9.0",
     "webpack-bundle-tracker": "^0.4.3"
