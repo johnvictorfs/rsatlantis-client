@@ -9,6 +9,7 @@
     "typescript.tsdk": "${workspaceRoot}/node_modules/typescript/lib",
 
     // Enable linting on .vue files with the Vetur extension
+    "vetur.experimental.templateInterpolationService": true,
     "vetur.format.defaultFormatter.ts": "vscode-typescript",
     "vetur.format.defaultFormatter.html": "prettyhtml",
     "vetur.format.defaultFormatterOptions": {

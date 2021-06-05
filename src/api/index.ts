@@ -30,7 +30,7 @@ class ApiDocs {
 
 export class Api {
   public axios: AxiosInstance
-  public baseURL: string = import.meta.env.VITE_API_URL || ''
+  public baseURL: string = import.meta.env.VITE_API_URL as string || ''
   public guides: GuideService
   public users: UserService
   public players: PlayerService
