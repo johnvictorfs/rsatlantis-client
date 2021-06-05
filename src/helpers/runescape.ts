@@ -6,5 +6,6 @@ export async function isInClan(player?: string): Promise<boolean> {
     const { data } = await api.axios.get(url)
     return data.clan === 'Atlantis'
   }
+
   return false
 }

@@ -24,7 +24,7 @@
 <script>
 import api from '@/api'
 
-import Guide from '@/components/Guide'
+import Guide from '@/components/Guide.vue'
 
 export default {
   name: 'GuideList',

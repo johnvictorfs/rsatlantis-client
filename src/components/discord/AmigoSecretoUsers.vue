@@ -126,12 +126,17 @@ const UserAnnotation = () => import('@/components/discord/UserAnnotation.vue')
 import api from '@/api'
 import { DiscordApi } from '@/types'
 
+type MenuItem = {
+  menu: boolean
+  given: boolean
+}
+
 @Component({
   components: { DiscordStatus, RunescapeIcon, UserAnnotation }
 })
 export default class AmigoSecretoUsers extends Vue {
   private users: DiscordApi['SecretSantaUser'][] = []
-  private menus: Record<number, Object> = {}
+  private menus: Record<number, MenuItem> = {}
 
   private coordX: number = 0
   private coordY: number = 0
@@ -192,6 +197,8 @@ export default class AmigoSecretoUsers extends Vue {
 $rs-icon-size: 19px;
 
 .rs-icon {
+  height: 20px !important;
+
   svg {
     &:hover {
       .background {

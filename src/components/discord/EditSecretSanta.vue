@@ -111,6 +111,7 @@
                   v-on="on"
                 />
               </template>
+              <!-- @ts-ignore -->
               <v-time-picker
                 light
                 :disabled="!endDate"
@@ -119,7 +120,8 @@
                 v-if="endTimeMenu"
                 v-model="endTime"
                 full-width
-                @click:minute="$refs.endTimeMenuRef.save(endTime)"
+               
+                @click:minute="$refs.startTimeMenuRef.save(endTime)"
               />
             </v-menu>
           </v-row>
@@ -175,6 +177,13 @@ interface IEditSecretSantaModal {
   components: { ModalCard }
 })
 export default class EditSecretSanta extends Vue {
+  $refs!: {
+    startTimeMenuRef: {
+      save: (time?: string) => void
+    }
+    form: any
+  }
+
   secretSantaStatus: Discord['SecretSantaStatus'] | null = null
 
   today: string = new Date().toISOString().substr(0, 10)
