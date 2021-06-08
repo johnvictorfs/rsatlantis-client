@@ -1,7 +1,7 @@
 <template>
-  <v-card>
+  <v-card color="backgroundContrast">
     <!-- Title -->
-    <v-toolbar class="text-wrap headline mb-2" color="grey darken-2">
+    <v-toolbar class="text-wrap headline mb-2" color="background">
       <v-toolbar-title class="text-wrap">
         <slot name="title" />
       </v-toolbar-title>

@@ -18,7 +18,7 @@ jobs:
       - name: Build for Production
         run: yarn build
         env:
-          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_API_URL: ${{ secrets.VUE_APP_API_URL }}
 
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
