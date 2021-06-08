@@ -8,7 +8,6 @@ import visualizer from 'rollup-plugin-visualizer'
 export default defineConfig({
   plugins: [
     createVuePlugin(),
-    vuetifyScssPlugin(),
     ViteComponents({
       customComponentResolvers: [VuetifyResolver()]
     })
