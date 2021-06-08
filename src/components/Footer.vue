@@ -1,16 +1,16 @@
 <template>
   <v-footer dark padless>
-    <v-card class="flex" text tile style="border: none;">
+    <v-card class="flex" text tile style="border: none;" color="#354B5E">
       <v-sparkline
         fill
         class="wave"
         :smooth="25"
-        :gradient="['#1e1e1e']"
+        :gradient="['#354B5E']"
         :line-width="4"
         :padding="0"
         :height="7"
         :value="[4, 3, 4, 5, 4, 5, 3, 4, 5, 4]"
-        style="background-color: #121212; border: none;"
+        style="background-color: #243340; border: none;"
       />
       <v-card-title>
         <v-row align="center" justify="center">
@@ -31,7 +31,7 @@
           </v-btn>
         </v-row>
       </v-card-title>
-      <v-card-actions class="blue darken-1 justify-center">
+      <v-card-actions class="justify-center" style="background-color: #243340">
         <strong>&copy; {{ currentYear }} — Atlantis</strong>
         <v-btn icon>
           <a href="https://github.com/johnvictorfs/rsatlantis" target="_blank" style="text-decoration: none;">

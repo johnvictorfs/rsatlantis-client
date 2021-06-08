@@ -8,7 +8,7 @@ import visualizer from 'rollup-plugin-visualizer'
 export default defineConfig({
   plugins: [
     createVuePlugin(),
-    visualizer(),
+    vuetifyScssPlugin(),
     ViteComponents({
       customComponentResolvers: [VuetifyResolver()]
     })
@@ -16,11 +16,24 @@ export default defineConfig({
   server: {
     port: 8080
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "./src/scss/main.scss";'
+      }
+    }
+  },
   resolve: {
     alias: [
       {
         find: '@',
         replacement: path.resolve(__dirname, 'src')
+      },
+      {
+        find: /^~.+/,
+        replacement: (val) => {
+          return val.replace(/^~/, '')
+        }
       }
     ]
   }

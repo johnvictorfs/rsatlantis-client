@@ -1,10 +1,10 @@
 <template>
-  <v-app-bar app dark fixed class="app-bar" hide-on-scroll>
+  <v-app-bar app dark fixed class="app-bar" hide-on-scroll color="backgroundContrast">
     <v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleSideBar" />
 
     <v-toolbar-title>
       <router-link :to="{name: 'home'}">
-        <v-img src="@/assets/images/atlantis_logo.png" />
+        <v-img :src="logo" />
       </router-link>
     </v-toolbar-title>
 
@@ -25,7 +25,7 @@
       <v-chip
         disabled
         v-if="item.beta"
-        color="success"
+        color="success lighten-4"
         outlined
         x-small
         class="ml-2"
@@ -58,6 +58,8 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
+import AtlantisLogo from '@/assets/images/atlantis_logo.png'
+
 @Component({
   props: {
     sidebarItems: {
@@ -72,6 +74,9 @@ import Component from 'vue-class-component'
 })
 export default class Toolbar extends Vue {
   sidebar: boolean = true
+  sidebarItems!: Record<string, any>[]
+  toolbarItems!: Record<string, any>[]
+  logo: string = AtlantisLogo
 
   get isAuthenticated() {
     return this.$store.getters.isAuthenticated
