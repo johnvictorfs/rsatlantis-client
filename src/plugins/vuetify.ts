@@ -16,7 +16,24 @@ export default new Vuetify({
     }
   },
   theme: {
-    dark: true
+    dark: true,
+    themes: {
+      dark: {
+        primary: '#354B5E',
+        secondary: '#b0bec5',
+        accent: '#66798a',
+        error: '#682222',
+        info: '#283744',
+        success: '#4ea729',
+        warning: '#FFC107',
+        // Custom
+        background: '#192330',
+        backgroundContrast: '#243340',
+        secondaryBackground: '#354B5E',
+        text: '#afc0d5',
+        disabledText: '#9B9B9B'
+      }
+    }
   },
   lang: {
     locales: { pt },

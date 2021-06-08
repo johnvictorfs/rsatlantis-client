@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app dark fixed class="app-bar" hide-on-scroll>
+  <v-app-bar app dark fixed class="app-bar" hide-on-scroll color="backgroundContrast">
     <v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleSideBar" />
 
     <v-toolbar-title>
@@ -25,7 +25,7 @@
       <v-chip
         disabled
         v-if="item.beta"
-        color="success"
+        color="success lighten-4"
         outlined
         x-small
         class="ml-2"

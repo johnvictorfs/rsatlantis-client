@@ -2,8 +2,8 @@
   <v-container>
     <v-row justify="center">
       <v-col xs="12" sm="8" md="8" lg="10" xl="4">
-        <v-card class="elevation-12">
-          <v-toolbar dark color="#363636">
+        <v-card class="elevation-12" color="backgroundContrast">
+          <v-toolbar dark color="background">
             <v-toolbar-title>
               <v-icon left size="32" color="#668fcb">
                 fas fa-gifts
@@ -24,7 +24,7 @@
               {{ apiErrorMessage }}
             </v-alert>
 
-            <v-list v-else three-line>
+            <v-list v-else three-line color="backgroundContrast">
               <v-list-item-group>
                 <v-subheader
                   v-text="`${users.length} inscritos`"

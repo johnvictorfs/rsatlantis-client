@@ -1,7 +1,7 @@
 <template>
-  <v-card class="atl-round-card" raised :loading="loading">
+  <v-card class="atl-round-card" raised :loading="loading" color="secondaryBackground">
     <!-- Discord Status Toolbar -->
-    <v-toolbar dark color="#363636">
+    <v-toolbar dark color="background">
       <v-toolbar-title class="discord-title">
         <v-icon left size="32" color="#668fcb">
           fab fa-discord

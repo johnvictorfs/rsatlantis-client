@@ -1,6 +1,6 @@
 <template>
-  <v-card class="atl-round-card" raised>
-    <v-toolbar dark color="#363636">
+  <v-card class="atl-round-card" raised color="secondaryBackground">
+    <v-toolbar dark color="background">
       <v-toolbar-title class="toolbar-title">
         <v-icon left size="32" color="#668fcb">
           mdi-calendar
@@ -55,7 +55,7 @@
         </v-timeline-item>
       </v-timeline>
 
-      <v-alert type="error" v-else>
+      <v-alert type="info" v-else>
         Nenhum evento marcado :(
       </v-alert>
     </v-card-text>
