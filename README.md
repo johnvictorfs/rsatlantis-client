@@ -3,8 +3,8 @@
 ## Frontend Repository
 
 - [Backend Repository](https://github.com/johnvictorfs/rsatlantis)
-- [Website](https://rsatlantis-9cd8a.web.app)
-- [API Docs](https://rsatlantis.tk/api/docs/redoc)
+- [Website](https://app.atlantis.jvfs.dev)
+- [API Docs](https://atlantis.jvfs.dev/api/docs/redoc)
 
 ---
 
